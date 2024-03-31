@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "bus-factor-zero (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "bus-factor-zero (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
