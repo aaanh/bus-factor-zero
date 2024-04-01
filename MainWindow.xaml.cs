@@ -39,12 +39,33 @@ namespace bus_factor_zero
 		}
 	}
 
+	class Contact
+	{
+		public string name;
+		public string email;
+		public string phone;
+		public string comments;
+
+		public Contact()
+		{
+
+		}
+
+		public Contact(string name, string email, string phone)
+		{
+			this.name = name;
+			this.email = email;
+			this.phone = phone;
+		}
+	}
+
 	/// <summary>
 	/// An empty window that can be used on its own or navigated to within a Frame.
 	/// </summary>
 	public sealed partial class MainWindow : Window
 	{
 		List<Account> accounts = new List<Account> ();
+		List<Contact> contacts = new List<Contact> ();
 
 		void updateCredentialDataDisplay()
 		{
@@ -53,8 +74,26 @@ namespace bus_factor_zero
 			foreach (Account acc in accounts)
 			{
 				TextBlock txtBlk = new TextBlock();
-				txtBlk.Text = "#" + idx + " Service: " + acc.service + " - Username: " + acc.username + " - Password: " + acc.password;
+				string obfuscatedPwd = "";
+				foreach (char c in acc.password)
+				{
+					obfuscatedPwd += "*";
+				}
+				txtBlk.Text = "#" + idx + " Service: " + acc.service + " - Username: " + acc.username + " - Password: " + obfuscatedPwd;
 				dataCredentials.Children.Add(txtBlk);
+				idx++;
+			}
+		}
+
+		void updateContactDataDisplay()
+		{
+			dataContacts.Children.Clear();
+			Int32 idx = 1;
+			foreach (Contact contact in contacts)
+			{
+				TextBlock txtBlk = new TextBlock();
+				txtBlk.Text = "#" + idx + " Name: " + contact.name + " - E-mail: " + contact.email + " - Phone: " + contact.phone + " - Comments: " + contact.comments;
+				dataContacts.Children.Add(txtBlk);
 				idx++;
 			}
 		}
@@ -80,6 +119,7 @@ namespace bus_factor_zero
 
 		private void Add_Credential_Handler(object sender, RoutedEventArgs e)
 		{
+			infoPopupStackPanel.Children.Clear();
 			InfoBar infoBar = new InfoBar();
 			infoBar.IsOpen = true;
 			infoBar.Severity = InfoBarSeverity.Success;
@@ -94,16 +134,32 @@ namespace bus_factor_zero
 			String msg = "Service: " + GrpAddAccountService.Text + ", Username: " + GrpAddAccountUsername.Text;
 			infoBar.Message = msg;
 			infoPopupStackPanel.Children.Add(infoBar);
-
-		
-
 			accounts.Add(acc);
 			updateCredentialDataDisplay();
 		}
 
 		private void Add_Contact_Handler(object sender, RoutedEventArgs e)
 		{
+			infoPopupStackPanel.Children.Clear();
+			InfoBar infoBar = new InfoBar();
+			infoBar.IsOpen = true;
+			infoBar.Severity = InfoBarSeverity.Success;
+			infoBar.Title = "Perform action: Add New Contact";
 
+			Contact contact = new Contact();
+			contact.name = GrpAddContactName.Text;
+			contact.email = GrpAddContactEmail.Text;
+			contact.phone = GrpAddContactPhone.Text;
+			contact.comments = GrpAddContactComments.Text;
+
+			String msg = "Name: " + GrpAddContactName.Text + ", E-mail: " + GrpAddContactEmail.Text + ", Phone: " + GrpAddContactPhone.Text;
+			infoBar.Message = msg;
+			infoPopupStackPanel.Children.Add(infoBar);
+
+
+
+			contacts.Add(contact);
+			updateContactDataDisplay();
 		}
 	}
 }

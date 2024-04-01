@@ -27,10 +27,10 @@
                             New Credential</TextBlock>
                     </StackPanel>
                     <TextBox x:Name="GrpAddAccountService" Header="Service" PlaceholderText="Google"
-                        MinWidth="150"></TextBox>
+                        MinWidth="300"></TextBox>
                     <TextBox x:Name="GrpAddAccountUsername" Header="Username"
-                        PlaceholderText="user@example.com" MinWidth="150"></TextBox>
-                    <PasswordBox x:Name="GrpAddAccountPassword" Header="Password" MinWidth="150"></PasswordBox>
+                        PlaceholderText="user@example.com" MinWidth="300"></TextBox>
+                    <PasswordBox x:Name="GrpAddAccountPassword" Header="Password" MinWidth="300"></PasswordBox>
                     <Button Style="{StaticResource AccentButtonStyle}"  Content="Add Credential" Click="Add_Credential_Handler"></Button>
                 </StackPanel>
             </Border>
@@ -44,27 +44,55 @@
                         <TextBlock Foreground="black" x:Name="AddContactSectionTitle" FontSize="16">Add
         New Contact</TextBlock>
                     </StackPanel>
-                    <TextBox Header="Name" PlaceholderText="Google" MinWidth="150"></TextBox>
-                    <TextBox Header="E-mail" PlaceholderText="user@example.com" MinWidth="150"></TextBox>
-                    <TextBox Header="Phone" PlaceholderText="+1-666-6666-6666" MinWidth="150"></TextBox>
+                    <TextBox x:Name="GrpAddContactName" Header="Name" PlaceholderText="Anh H. Nguyen" MinWidth="300"></TextBox>
+                    <TextBox x:Name="GrpAddContactEmail" Header="E-mail" PlaceholderText="user@example.com" MinWidth="300"></TextBox>
+                    <TextBox x:Name="GrpAddContactPhone" Header="Phone" PlaceholderText="+1-666-6666-6666" MinWidth="300"></TextBox>
                     <StackPanel Orientation="Vertical" Spacing="8">
                         <TextBlock FontSize="16">Comment/Notes</TextBlock>
-                        <RichEditBox x:Name="GrpAddContactNotes" MinWidth="200" MinHeight="300"></RichEditBox>
+                        <!--<RichEditBox  x:Name="GrpAddContactComments" MinWidth="200" MinHeight="300"></RichEditBox>-->
+                        <TextBox PlaceholderText="Lorem ipsum" x:Name="GrpAddContactComments" MinWidth="300" Header="Comments/Notes"></TextBox>
                     </StackPanel>
                     <Button Style="{StaticResource AccentButtonStyle}"  Content="Add Contact" Click="Add_Contact_Handler"></Button>
                 </StackPanel>
             </Border>
             
+            <!-- Dead Man's Switch Timer -->
+
+            <Border BorderThickness="1" BorderBrush="#555555" Padding="8" CornerRadius="4">
+                <StackPanel Spacing="16">
+                    <TextBlock FontSize="24" Text="⏰ Dead Man's Switch Timer"></TextBlock>
+                    <HyperlinkButton Content="ℹ️ Learn about Unix Cron" NavigateUri="http://www.microsoft.com" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBox PlaceholderText="minute"></TextBox>
+                        <TextBox PlaceholderText="hour"></TextBox>
+                        <TextBox PlaceholderText="day (month)"></TextBox>
+                        <TextBox PlaceholderText="month"></TextBox>
+                        <TextBox PlaceholderText="day (week)"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+                
+            </Border>
+
             <!-- Displaying added data -->
             
             <Border x:Name="dataBorder" BorderThickness="1" BorderBrush="#555555" Padding="8" CornerRadius="4">
-                <StackPanel Orientation="Vertical" Spacing="8">
-                    <StackPanel Orientation="Vertical" x:Name="dataContacts">
-                        <TextBlock FontSize="32">Contacts</TextBlock>
+                <StackPanel Orientation="Vertical" Spacing="8" MinWidth="500">
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                        <FontIcon Glyph="&#xE8B7;" />
+                    <TextBlock FontSize="24">"Database"</TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" x:Name="dataCredentials">
-                        <TextBlock FontSize="32">Credentials</TextBlock>
-                    </StackPanel>
+                    <Border BorderThickness="1" BorderBrush="#555555" Padding="8" CornerRadius="4">
+                        <StackPanel Orientation="Vertical" MinWidth="400" MinHeight="150">
+                            <TextBlock FontSize="32">Contacts</TextBlock>
+                            <StackPanel Orientation="Vertical" x:Name="dataContacts"></StackPanel>
+                         </StackPanel>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="#555555" Padding="8" CornerRadius="4">
+                        <StackPanel Orientation="Vertical" MinWidth="400" MinHeight="150">
+                            <TextBlock FontSize="32">Credentials</TextBlock>
+                            <StackPanel Orientation="Vertical" x:Name="dataCredentials"></StackPanel>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </Border>
         </StackPanel>
