@@ -11,38 +11,62 @@
     <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"
         Spacing="16"
         Padding="16">
+        
         <TextBlock x:Name="AppTitle" FontFamily="FantasqueSansM Nerd Font" FontWeight="Bold"
             FontSize="36" Text="Bus Factor 0" Margin="0 16"></TextBlock>
+        <StackPanel x:Name="infoPopupStackPanel"></StackPanel>
         <StackPanel Orientation="Horizontal" Spacing="16">
+            
+            <!-- Add New Credential -->
+            
             <Border BorderThickness="1" BorderBrush="#555555" Padding="8" CornerRadius="4">
                 <StackPanel Spacing="16">
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <FontIcon Glyph="&#xE910;" />
-                        <TextBlock x:Name="AddAccountSectionTitle" FontWeight="Bold" FontSize="16">Add
-                            Account</TextBlock>
+                    <StackPanel VerticalAlignment="Center" CornerRadius="4" Background="{StaticResource AccentTextFillColorTertiaryBrush}" Orientation="Horizontal" Spacing="8" Padding="8">
+                        <FontIcon Foreground="black" Glyph="&#xE910;" />
+                        <TextBlock Foreground="black" x:Name="AddAccountSectionTitle" FontSize="16">Add
+                            New Credential</TextBlock>
                     </StackPanel>
                     <TextBox x:Name="GrpAddAccountService" Header="Service" PlaceholderText="Google"
                         MinWidth="150"></TextBox>
                     <TextBox x:Name="GrpAddAccountUsername" Header="Username"
                         PlaceholderText="user@example.com" MinWidth="150"></TextBox>
                     <PasswordBox x:Name="GrpAddAccountPassword" Header="Password" MinWidth="150"></PasswordBox>
+                    <Button Style="{StaticResource AccentButtonStyle}"  Content="Add Credential" Click="Add_Credential_Handler"></Button>
+                </StackPanel>
+            </Border>
+
+            <!-- Add New Contact -->
+
+            <Border BorderThickness="1" BorderBrush="#555555" Padding="8" CornerRadius="4">
+                <StackPanel Spacing="16">
+                    <StackPanel VerticalAlignment="Center" CornerRadius="4" Background="{StaticResource AccentTextFillColorTertiaryBrush}" Orientation="Horizontal" Spacing="8" Padding="8">
+                        <FontIcon Foreground="black" Glyph="&#xE779;" />
+                        <TextBlock Foreground="black" x:Name="AddContactSectionTitle" FontSize="16">Add
+        New Contact</TextBlock>
+                    </StackPanel>
+                    <TextBox Header="Name" PlaceholderText="Google" MinWidth="150"></TextBox>
+                    <TextBox Header="E-mail" PlaceholderText="user@example.com" MinWidth="150"></TextBox>
+                    <TextBox Header="Phone" PlaceholderText="+1-666-6666-6666" MinWidth="150"></TextBox>
+                    <StackPanel Orientation="Vertical" Spacing="8">
+                        <TextBlock FontSize="16">Comment/Notes</TextBlock>
+                        <RichEditBox x:Name="GrpAddContactNotes" MinWidth="200" MinHeight="300"></RichEditBox>
+                    </StackPanel>
+                    <Button Style="{StaticResource AccentButtonStyle}"  Content="Add Contact" Click="Add_Contact_Handler"></Button>
+                </StackPanel>
+            </Border>
+            
+            <!-- Displaying added data -->
+            
+            <Border x:Name="dataBorder" BorderThickness="1" BorderBrush="#555555" Padding="8" CornerRadius="4">
+                <StackPanel Orientation="Vertical" Spacing="8">
+                    <StackPanel Orientation="Vertical" x:Name="dataContacts">
+                        <TextBlock FontSize="32">Contacts</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" x:Name="dataCredentials">
+                        <TextBlock FontSize="32">Credentials</TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </Border>
         </StackPanel>
-        <Border BorderThickness="1" BorderBrush="#555555" Padding="8" CornerRadius="4">
-            <StackPanel Spacing="16">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon Glyph="&#xE77B;" />
-                    <TextBlock FontWeight="Bold" FontSize="16">Add Contact</TextBlock>
-                </StackPanel>
-                <TextBox Header="Name" PlaceholderText="Google" MinWidth="150"></TextBox>
-                <TextBox Header="E-mail" PlaceholderText="user@example.com" MinWidth="150"></TextBox>
-                <TextBox Header="Phone" PlaceholderText="+1-666-6666-6666" MinWidth="150"></TextBox>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock FontWeight="Bold" FontSize="16">Comment/Notes</TextBlock>
-                    <RichEditBox x:Name="GrpAddContactNotes" MinWidth="200" MinHeight="300"></RichEditBox>
-                </StackPanel>
-            </StackPanel>
-        </Border>
     </StackPanel>
 </Window>
